@@ -25,9 +25,10 @@ describe("05-exercises", () => {
      */
 
     // Write the assertion
+    expect(addItemToList(prevList, newItem)).toContain(newItem)
   });
 
-  test("addUser adds a new user to the list of users", () => {
+  test.only("addUser adds a new user to the list of users", () => {
     expect.assertions(1);
 
     const users = [{ name: "dani" }, { name: "ana" }, { name: "andrew" }];
@@ -46,7 +47,10 @@ describe("05-exercises", () => {
      */
 
     // Write the assertion
-    expect(addUser(users, 'maria')).toEqual(expectedUser)
+
+    expect(addUser(users, 'maria')).toEqual(expect.arrayContaining(
+      [{ name: "dani" }, { name: "ana" }, { name: "andrew" }, { name: "maria" }]
+      ))
   });
 
   test("getWeekDays returns an array of week days", () => {
@@ -87,7 +91,7 @@ describe("05-exercises", () => {
     expect(makeAdminUser(user)).toEqual(expect.objectContaining(expectedProperty))
   });
 
-  test("getUserInfo returns an object without the address properties", () => {
+  test.only("getUserInfo returns an object without the address properties", () => {
     expect.assertions(1);
 
     const userAddress = {
