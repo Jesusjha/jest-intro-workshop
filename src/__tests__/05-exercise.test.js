@@ -48,9 +48,7 @@ describe("05-exercises", () => {
 
     // Write the assertion
 
-    expect(addUser(users, 'maria')).toEqual(expect.arrayContaining(
-      [{ name: "dani" }, { name: "ana" }, { name: "andrew" }, { name: "maria" }]
-      ))
+    expect(addUser(users, 'maria')).toContainEqual(expectedUser)
   });
 
   test("getWeekDays returns an array of week days", () => {
@@ -91,7 +89,7 @@ describe("05-exercises", () => {
     expect(makeAdminUser(user)).toEqual(expect.objectContaining(expectedProperty))
   });
 
-  test.only("getUserInfo returns an object without the address properties", () => {
+  test("getUserInfo returns an object without the address properties", () => {
     expect.assertions(1);
 
     const userAddress = {
