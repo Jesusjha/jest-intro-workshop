@@ -20,7 +20,7 @@ describe("06-exercises", () => {
    * @tip
    * done callback
    */
-  test("asyncAdd returns the sum of the numbers", () => {
+  test("asyncAdd returns the sum of the numbers", (done) => {
     expect.assertions(1);
 
     asyncAdd(5, 5, callback);
@@ -28,6 +28,7 @@ describe("06-exercises", () => {
     // Finish the test
     function callback(result) {
       expect(result).toBe(10);
+      done();
     }
   });
 
@@ -48,6 +49,9 @@ describe("06-exercises", () => {
     expect.assertions(1);
 
     // Finish the test
+    return fetchUserOK(userID).then((user) => {
+      expect(user).toEqual(expectedUser)
+    })
   });
 
   /**
@@ -62,12 +66,15 @@ describe("06-exercises", () => {
    * the result to check if the rejected message is the same
    * as the `expectedMessage` variable.
    */
-  test("fetchUserFail rejects with an error message", () => {
+  test.only("fetchUserFail rejects with an error message", () => {
     const userID = 5;
     const expectedMessage = `User ${userID} not found`;
 
     expect.assertions(1);
 
     // Finish the test
+
+    return expect(fetchUserFail(userID)).rejects.toBe(expectedMessage)
+
   });
 });
